@@ -1,7 +1,7 @@
 ---
-name: Feature Template
+name: Feature request
 about: 이슈 생성 템플릿
-title: "[라벨명] 이슈 이름"
+title: ''
 labels: ''
 assignees: ''
 
@@ -9,6 +9,8 @@ assignees: ''
 
 ### 💬 기능 설명
 > 기능에 대해 간략히 적어주세요.
+
+<br>
 
 ### 🎯 구현 내용
 - [ ] TODO
