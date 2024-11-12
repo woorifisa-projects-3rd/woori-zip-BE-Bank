@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div class="login-container">
+    <div class="logo">
+        <img th:src="@{/images/logo.png}" alt="Logo">
+    </div>
+    <form th:action="@{/bank/v1/login}" method="post">
+        <div class="form-container">
+            <div class="inputs-container">
+                <div class="input-group">
+                    <label class="input-label">아이디</label>
+                    <input type="text" name="username" placeholder="아이디를 입력하세요" required>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">비밀번호</label>
+                    <input type="password" name="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+            </div>
+            <button type="submit" class="login-button">로그인</button>
+        </div>
+    </form>
+    <div class="button-container">
+        <button type="button" class="close-button">닫기</button>
+    </div>
+</div>
+</body>
+</html>
