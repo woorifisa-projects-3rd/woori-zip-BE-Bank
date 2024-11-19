@@ -1,0 +1,28 @@
+.header-container {
+    background-color: #ffffff;
+}
+
+.header-container-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 40px; /* 로고 이미지 크기 조정 */
+    width: auto;
+}
+
+
+.design {
+    width: 100%;      /* 너비 */
+    height: 100%;     /* 높이 */
+}
