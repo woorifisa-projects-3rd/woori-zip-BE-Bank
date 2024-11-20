@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리은행 로그인</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <!-- 은행 로고 이미지 -->
+        <a th:href="@{/}" class="logo">
+            <img th:src="@{/images/logo.png}" alt="우리 은행 로고" class="logo-img">
+        </a>
+    </div>
+</header>
+<div class="container">
+    <h1 class="title">기업로그인</h1>
+    <p class="subtitle">우리은행에 오신걸 환영합니다 고객님!</p>
+
+    <div class="login-container">
+        <!-- 왼쪽 섹션 -->
+        <div class="left-section">
+            <div class="service-card">
+                <h2>기업뱅킹 체험관</h2>
+                <p>좀 더 쉽게 사용할 수 있는<br/>체험관을 이용해보세요.</p>
+
+                <button class="try-button">체험하기</button>
+
+                <div class="menu-links">
+                    <a href="#" class="menu-item">
+                        기업인터넷뱅킹 이용가이드
+                        <span class="arrow">&#8250;</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        신규기업 및 제휴개설 안내
+                        <span class="arrow">&#8250;</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h3>고객센터</h3>
+                <div class="service-hours">평일 09:00~18:00</div>
+                <div class="phone-numbers">
+                    <span>1588-5000</span>
+                    <span>1599-5000</span>
+                    <span>1533-5000</span>
+                </div>
+                <div class="international">
+                    해외 +82)2-2006-5000
+                </div>
+            </div>
+        </div>
+
+        <!-- 오른쪽 섹션 -->
+        <div class="right-section">
+            <div class="login-options">
+                <h2>인증서 로그인이 편하신가요?</h2>
+                <h3>인증서 로그인</h3>
+
+                <div class="cert-buttons">
+                    <button class="cert-btn public">
+                        공동인증서<br/>
+                        <span>(구)공인인증서</span>
+                    </button>
+                    <button class="cert-btn private">
+                        금융인증서
+                    </button>
+                </div>
+
+                <div class="cert-links">
+                    <a href="#">공동인증서 발급</a>
+                    <a href="#">금융인증서 발급</a>
+                    <a href="#">인증센터</a>
+                </div>
+
+                <div class="id-login-section">
+                    <h3>아이디 입력이 편하신가요?</h3>
+                    <h4>아이디 로그인</h4>
+
+                    <form id="login-form" th:action="@{/api/v1/login}" method="post">
+                        <div>
+                            <label for="username">아이디</label>
+                            <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    placeholder="아이디를 입력하세요"
+                                    class="inputField"
+                                    onInput="validateUsernameInput()"
+                            />
+                            <div id="usernameError" class="errorMessage"></div>
+                        </div>
+
+                        <div>
+                            <label for="password">비밀번호</label>
+                            <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="비밀번호를 입력하세요"
+                                    class="inputField"
+                                    onInput="validatePasswordInput()"
+                            />
+                            <div id="passwordError" class="errorMessage"></div>
+                        </div>
+
+                        <div id="loginError" class="errorMessage"></div>
+
+                        <button type="submit" class="login-btn">
+                            로그인하기
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div>
+
+        <div class="nav-fnb1">
+
+            <dl data-autoset="menuover" class="">
+                <dt role="button" tabindex="0" class="btn" data-menu="btn">대표전화 1588-5000</dt>
+            </dl>
+
+            <dl data-autoset="menuover">
+                <dt role="button" tabindex="0" class="btn" data-menu="btn">이용안내</dt>
+            </dl>
+
+            <dl data-autoset="menuover">
+                <dt role="button" tabindex="0" class="btn" data-menu="btn">기타서비스</dt>
+            </dl>
+
+            <dl data-autoset="menuover">
+                <dt role="button" tabindex="0" class="btn" data-menu="btn">서식자료실</dt>
+            </dl>
+
+            <dl data-autoset="menuover">
+                <dt role="button" tabindex="0" class="btn" data-menu="btn">기업뱅킹 체험관</dt>
+            </dl>
+
+            <dl data-autoset="menuover">
+                <dt role="button" tabindex="0" class="btn" data-menu="btn">타기관 OTP 등록(불량 교체)</dt>
+            </dl>
+        </div>
+        <div class="nav-lang" data-autoset="menu">
+            <dl>
+                <dt role="button" tabindex="0" class="btn" data-menu="btn" aria-expanded="false">LANGUAGE</dt>
+            </dl>
+        </div>
+
+
+        <div class="nav-site" data-autoset="menu">
+            <dl>
+                <dd data-menu="con" class="expand" data-label="패밀리사이트">
+                    <div>
+                        <a target="_blank" title="새창" href="https://www.woorifg.com/">우리금융지주</a>
+                        <a target="_blank" title="새창" href="http://www.wooriam.kr/">우리자산운용</a>
+                        <a target="_blank" title="새창" href="http://www.woorifis.com/">우리FIS</a>
+                    </div>
+                    <div>
+                        <a target="_blank" title="새창" href="https://www.wooricard.com/">우리카드</a>
+                        <a target="_blank" title="새창" href="https://www.woorisavingsbank.com/">우리금융저축은행</a>
+                        <a target="_blank" title="새창" href="http://www.wfri.re.kr/">우리금융경영연구소</a>
+                    </div>
+                    <div>
+                        <a target="_blank" title="새창" href="https://www.woorifcapital.com/">우리금융캐피탈</a>
+                        <a target="_blank" title="새창" href="https://www.wooricredit.com/">우리신용정보</a>
+                        <a target="_blank" title="새창" href="https://www.woorifoundation.or.kr/">우리다문화장학재단</a>
+                    </div>
+                    <div>
+                        <a target="_blank" title="새창" href="https://www.wooriib.com/">우리투자증권</a>
+                        <a target="_blank" title="새창" href="http://www.woorifs.co.kr/">우리펀드서비스</a>
+                        <a target="_blank" title="새창" href="http://www.woorimiso.or.kr/">우리미소금융재단</a>
+                    </div>
+                    <div>
+                        <a target="_blank" title="새창" href="http://www.wooriat.com/">우리자산신탁</a>
+                        <a target="_blank" title="새창" href="http://www.wooripe.com/">우리PE</a>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+
+    </div>
+    <div>
+
+        <nav class="nav-fnb2">
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=bp">은행소개</a>
+            <a href="#popup" title="새창" onclick="wb.pop.openWindow('https://spib.wooribank.com/pib/Dream?withyou=CMCOM0153', 'branch','894','710','1','1');return false;">영업점 안내</a>
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=CQSCT0048">개인정보처리방침</a>
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=CQSCT0132">신용정보활용체제</a>
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=CQSCT0049">개인신용정보관리보호</a>
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=CQACR0001">사고신고</a>
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=CQCSD0001">전자민원접수</a>
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=POTRT0033">보호금융상품등록부</a>
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=CQPNC0002">상품공시실</a>
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=CQSCT0001">보안센터</a>
+            <a href="https://spot.wooribank.com/pot/Dream?withyou=CQIBG0050">웹접근성 이용안내</a>
+        </nav>
+
+        <p class="copyr">COPYRIGHTS WOORI BANK. ALL RIGHTS RESERVED.</p>
+
+        <div class="info">
+            <span class="img1" data-ellipsis="true" target="_blank"> 국가공인 정보통신접근성 품질인증마크 </span>
+            <span class="img2" data-ellipsis="true" tabindex="0">2019 고객감동경영대상 종합대상 12년 연속 수상</span>
+            <span class="img3" data-ellipsis="true" tabindex="0">The Banker Awards 2020 우리은행 3관왕 수상</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // 유효성 검사
+        const usernameError = validateUsername(username);
+        const passwordError = validatePassword(password);
+
+        // 에러 메시지 표시
+        document.getElementById('usernameError').innerText = usernameError;
+        document.getElementById('passwordError').innerText = passwordError;
+        document.getElementById('loginError').innerText = '';
+
+        // 유효성 검사 통과 시 서버로 데이터 전송
+        if (!usernameError && !passwordError) {
+            document.getElementById('loginForm').submit();
+
+        }
+        else {
+            document.getElementById('loginError').innerText = error.message;
+        }
+    });
+
+    // 아이디 유효성 검사
+    function validateUsername(username) {
+        const usernameRegex = /^[a-zA-Z0-9]{5,}$/;
+        return usernameRegex.test(username)
+            ? ''
+            : '아이디는 5자 이상이며, 영문 또는 숫자만 포함해야 합니다.';
+    }
+
+    // 비밀번호 유효성 검사
+    function validatePassword(password) {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]|.*\d|.*\W)|(?=.*[A-Z])(?=.*\d|.*\W)|(?=.*\d)(?=.*\W|.*[a-z]).{8,}$/;
+        return passwordRegex.test(password) && password.length >= 8
+            ? '' // 유효성 통과
+            : '비밀번호는 8자 이상이며, 대문자, 소문자, 숫자와 기호를 최소 2개 이상 포함해야 합니다.';
+    }
+
+    function validateUsernameInput() {
+        const username = document.getElementById('username').value;
+        const usernameError = validateUsername(username);
+        document.getElementById('usernameError').innerText = usernameError;
+    }
+
+    function validatePasswordInput() {
+        const password = document.getElementById('password').value;
+        const passwordError = validatePassword(password);
+        document.getElementById('passwordError').innerText = passwordError;
+    }
+
+</script>
+
+</body>
+</html>
