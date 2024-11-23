@@ -82,7 +82,7 @@
                     <h3>아이디 입력이 편하신가요?</h3>
                     <h4>아이디 로그인</h4>
 
-                    <form id="login-form" th:action="@{/api/v1/login}" method="post">
+                    <form id="login-form" action="/woori-bank/login" method="post">
                         <div>
                             <label for="username">아이디</label>
                             <input
@@ -231,7 +231,7 @@
 
         // 유효성 검사 통과 시 서버로 데이터 전송
         if (!usernameError && !passwordError) {
-            document.getElementById('loginForm').submit();
+            document.getElementById('login-form').submit();
 
         }
         else {
