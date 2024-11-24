@@ -36,7 +36,7 @@ public class MemberApplications {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Column(name = "token", nullable = false)
+    @Column(name = "token")
     private String token;
 
     @Column(name = "code", nullable = false)
