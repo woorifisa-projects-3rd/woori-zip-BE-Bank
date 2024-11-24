@@ -16,6 +16,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import static java.util.Objects.isNull;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -50,5 +52,11 @@ public class MemberApplications {
         this.member = member;
         this.token = token;
         this.code = code;
+    }
+
+    public void updateCode(String authorizationCode) {
+        if (!isNull(authorizationCode)) {
+            this.code = authorizationCode;
+        }
     }
 }
