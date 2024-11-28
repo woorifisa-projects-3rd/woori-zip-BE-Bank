@@ -36,42 +36,27 @@ public class Member {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
     @Column(name = "customer_id", nullable = false)
     private String customerId;
+
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "sex", nullable = false)
-    private Sex sex;
+    @Column(name = "gender", nullable = false)
+    private int gender;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "member_rank", nullable = false)
-    private Rank rank;
-
-    @Column(name = "address", nullable = false)
-    private String address;
+    private int memberShip;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "life_stage", nullable = false)
     private LifeStage lifeStage;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "earnings_type")
-    private EarningsType earningsType;
-
-    @Column(name = "earnings_fee")
-    private Long earningsFee;
-
-    @Column(name = "credit_score")
-    private Integer creditScore;
-
-    @Column(name = "debt", nullable = false, columnDefinition = "BIGINT DEFAULT 0")
-    private long debt;
+    @Column(name = "available_assets", nullable = false)
+    private long availableAssets;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "spending_history_id", nullable = false)
