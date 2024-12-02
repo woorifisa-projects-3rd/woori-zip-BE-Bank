@@ -39,6 +39,9 @@ public class Member {
     @Column(name = "customer_id", nullable = false)
     private String customerId;
 
+    @Column(name = "email", nullable = false)
+    private String email;
+
     @Column(name = "name", nullable = false)
     private String name;
 
