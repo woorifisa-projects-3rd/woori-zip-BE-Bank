@@ -21,12 +21,14 @@ public class ShowMemberDataResponse {
     private final int membership;
     private final LifeStage lifeStage;
     private final long availableAssets;
+    private final String email;
     private final SpendingHistoryResponse spendingHistory;
 
     public static ShowMemberDataResponse from(Member member) {
         return ShowMemberDataResponse.builder()
                 .customerId(member.getCustomerId())
                 .name(member.getName())
+                .email(member.getEmail())
                 .gender(member.getGender())
                 .birthday(member.getBirthday())
                 .membership(member.getMemberShip())
