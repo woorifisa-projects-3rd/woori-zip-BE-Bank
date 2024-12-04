@@ -1,0 +1,27 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/woori-zip-BANK
+    overwrite: yes
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+
+hooks:
+  AfterInstall:
+    - location: scripts/after-deploy.sh
+      timeout: 200
+      runas: root
+  ApplicationStart:
+    - location: scripts/start-server.sh 
+      timeout: 200
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop-server.sh  
+      timeout: 200
+      runas: root
