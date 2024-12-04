@@ -12,7 +12,7 @@ jobs:
     env:
       ENV_PATH: .env
       S3_BUCKET_DIR_NAME: production
-      DEPLOYMENT_GROUP_NAME: bank-production
+      DEPLOYMENT_GROUP_NAME: production
     environment: production
     runs-on: ubuntu-latest
     steps:
@@ -53,7 +53,7 @@ jobs:
 
       - name: 🚀 Deploy to EC2 with CodeDeploy
         run: aws deploy create-deployment
-            --application-name woorizip_codeDeploy
+            --application-name woorizip-bank-codedeploy
             --deployment-config-name CodeDeployDefault.AllAtOnce
             --deployment-group-name ${{ env.DEPLOYMENT_GROUP_NAME }}
             --s3-location bucket=${{ secrets.S3_BUCKET_NAME }},bundleType=zip,key=${{ env.S3_BUCKET_DIR_NAME }}/$GITHUB_SHA.zip
