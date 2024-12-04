@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PID=$(pgrep -f 'backend-0.0.1-SNAPSHOT.jar')
+PID=$(pgrep -f 'bank-0.0.1-SNAPSHOT.jar')
 if [ -n "$PID" ]; then
     echo "Stopping existing Spring Boot application (PID: $PID)"
     kill -15 $PID
@@ -16,7 +16,7 @@ else
     echo "No running Spring Boot application found."
 fi
 
-JAR_PATH="/home/ubuntu/woori-zip-BE/build/libs/backend-0.0.1-SNAPSHOT.jar"
+JAR_PATH="/home/ubuntu/woori-zip-BANK/build/libs/bank-0.0.1-SNAPSHOT.jar"
 if [ -f "$JAR_PATH" ]; then
     echo "Deleting existing JAR file at $JAR_PATH"
     rm "$JAR_PATH"
