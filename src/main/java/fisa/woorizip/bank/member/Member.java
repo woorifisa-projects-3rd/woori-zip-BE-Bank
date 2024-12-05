@@ -58,9 +58,6 @@ public class Member {
     @Column(name = "life_stage", nullable = false)
     private LifeStage lifeStage;
 
-    @Column(name = "available_assets", nullable = false)
-    private long availableAssets;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "spending_history_id", nullable = false)
     private SpendingHistory spendingHistory;

@@ -41,8 +41,10 @@ public class MemberController {
                          @RequestParam String clientId,
                          @RequestParam String redirectUri,
                          HttpServletRequest request) {
+        System.out.println("redirectUri = " + redirectUri);
         HttpSession session = request.getSession(true);
         memberService.validateServiceAuth(responseType, clientId, redirectUri);
+        System.out.println("/woori-bank/auth 검증 완료");
         session.setAttribute(CLIENT_ID, clientId);
         session.setAttribute(REDIRECT_URI, redirectUri);
         return "login";
