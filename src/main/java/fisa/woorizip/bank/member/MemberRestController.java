@@ -27,7 +27,6 @@ public class MemberRestController {
     @GetMapping("/api/v1/members")
     public ShowMemberDataResponse getMemberData(@MemberId Long memberId) {
         ShowMemberDataResponse memberData = memberService.getMemberData(memberId);
-        System.out.println("memberData.getName() = " + memberData.getName());
         return memberData;
     }
 }

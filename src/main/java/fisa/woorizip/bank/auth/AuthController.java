@@ -18,18 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService authService;
-    private static final String REDIRECT_FORMAT = "%s?code=%s";
-
-    @PostMapping("/auth")
-    public ResponseEntity<Void> authenticate(@RequestParam Long memberId,
-                                             @RequestParam String responseType,
-                                             @RequestParam String clientId,
-                                             @RequestParam String redirectUri) {
-        String authorizationCode = authService.getAuthorizationCode(memberId, responseType, clientId, redirectUri);
-        return ResponseEntity.status(HttpStatus.FOUND)
-                .header(HttpHeaders.LOCATION, String.format(REDIRECT_FORMAT, "http://localhost:3000/api/oauthRedirect", authorizationCode))
-                .build();
-    }
 
     @PostMapping("/token")
     public GetTokenResponse getToken(@RequestBody GetTokenRequest getTokenRequest) {
