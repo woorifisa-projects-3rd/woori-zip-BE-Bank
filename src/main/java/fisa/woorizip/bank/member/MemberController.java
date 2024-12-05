@@ -5,6 +5,8 @@ import fisa.woorizip.bank.member.dto.SignInResult;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,13 +20,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import static org.springframework.http.HttpHeaders.LOCATION;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/woori-bank")
 public class MemberController {
 
     private final MemberService memberService;
     private static final String CLIENT_ID = "client_id";
     private static final String MEMBER_ID = "member_id";
+    private static final String REDIRECT_URI = "redirect_uri";
+    private final String agreementUri;
+
+    @Autowired
+    public MemberController(MemberService memberService,
+                            @Value("${woori-bank.agreement}") String agreementUri) {
+        this.memberService = memberService;
+        this.agreementUri = agreementUri;
+    }
 
     @GetMapping("/auth")
     public String signIn(@RequestParam String responseType,
@@ -34,6 +44,7 @@ public class MemberController {
         HttpSession session = request.getSession(true);
         memberService.validateServiceAuth(responseType, clientId, redirectUri);
         session.setAttribute(CLIENT_ID, clientId);
+        session.setAttribute(REDIRECT_URI, redirectUri);
         return "login";
     }
 
@@ -49,14 +60,13 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.FOUND).header(LOCATION, redirectUri).build();
     }
 
-    private static final String SIGN_IN_REDIRECT_FORMAT = "http://localhost:3000/api/oauthRedirect?code=%s";
-    private static final String REDIRECT_AGREEMENT = "http://localhost:8082/woori-bank/agreement";
+    private static final String SIGN_IN_REDIRECT_FORMAT = "%s?code=%s";
 
     private ResponseEntity<Void> createSignInResponse(SignInResult signInResult, HttpSession session) {
         if(signInResult.isAlreadySignedIn())
-            return createRedirectResponse(String.format(SIGN_IN_REDIRECT_FORMAT, signInResult.getAuthCode()));
+            return createRedirectResponse(String.format(SIGN_IN_REDIRECT_FORMAT, session.getAttribute(REDIRECT_URI), signInResult.getAuthCode()));
         session.setAttribute(MEMBER_ID, signInResult.getMemberId());
-        return createRedirectResponse(REDIRECT_AGREEMENT);
+        return createRedirectResponse(agreementUri);
     }
 
     @GetMapping("/agreement")
