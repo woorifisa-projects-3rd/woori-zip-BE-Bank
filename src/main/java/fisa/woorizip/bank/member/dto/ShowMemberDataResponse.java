@@ -20,7 +20,6 @@ public class ShowMemberDataResponse {
     private final Integer creditScore;
     private final int membership;
     private final LifeStage lifeStage;
-    private final long availableAssets;
     private final String email;
     private final SpendingHistoryResponse spendingHistory;
 
@@ -33,7 +32,6 @@ public class ShowMemberDataResponse {
                 .birthday(member.getBirthday())
                 .membership(member.getMemberShip())
                 .lifeStage(member.getLifeStage())
-                .availableAssets(member.getAvailableAssets())
                 .spendingHistory(SpendingHistoryResponse.from(member.getSpendingHistory()))
                 .build();
     }
